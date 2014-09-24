@@ -12,6 +12,10 @@
 <script type="text/javascript" src="${contextPath}/scripts/index.js"></script>
 </head>
 <body>
-	<input type="hidden" value="${accestoken}" id="token" />
+<c:if test="${not empty accestoken }">	<input type="hidden" value="${accestoken}" id="token" /></c:if>
+	<select id="files"  multiple>
+
+	</select>
+	<input type="button" value="ophalen" id="knop">
 </body>
 </html>
