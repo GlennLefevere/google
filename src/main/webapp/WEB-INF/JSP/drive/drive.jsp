@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript" src="${contextPath}/scripts/index.js"></script>
+<script type="text/javascript" src="${contextPath}/scripts/drive.js"></script>
 </head>
 <body>
 <c:if test="${not empty accestoken }">	<input type="hidden" value="${accestoken}" id="token" /></c:if>

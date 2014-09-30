@@ -3,6 +3,7 @@ package be.vdab.web;
 import javax.inject.Inject;
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
@@ -26,11 +27,15 @@ public class SocialConfig {
 
 	@Inject
     private DataSource dataSource;
-	
+	@Value("${google.clientId}")
+    private String clientId;
+	@Value("${google.clientSecret}")
+    private String clientSecret;
+
 	@Bean
 	public ConnectionFactoryLocator connectionFactoryLocator() {
 		ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
-		registry.addConnectionFactory(new GoogleConnectionFactory("127434506136-p4pqd6ofqnd9pfs9imoahrt27avfdqei.apps.googleusercontent.com", "vYSsrkCahCPOuVBpFFLV39vF"));
+		registry.addConnectionFactory(new GoogleConnectionFactory(clientId, clientSecret/*"127434506136-p4pqd6ofqnd9pfs9imoahrt27avfdqei.apps.googleusercontent.com", "vYSsrkCahCPOuVBpFFLV39vF"*/));
 		return registry;
 	}
 

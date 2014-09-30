@@ -6,6 +6,8 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.web.servlet.LocaleResolver;
@@ -21,12 +23,18 @@ import be.vdab.entities.UserInterceptor;
 
 @Configuration
 @EnableWebMvc
+@PropertySource("classpath:/application.properties")
 @ComponentScan(basePackageClasses = CreateControllerBeans.class)
 public class CreateControllerBeans extends WebMvcConfigurerAdapter {
 	
 	@Inject
 	private UsersConnectionRepository usersConnectionRepository;
 
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
+	
 	@Bean
 	InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();

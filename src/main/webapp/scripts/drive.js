@@ -1,14 +1,12 @@
-var apikey = "AIzaSyDQ-l7yV5HPowepjn3DFKvkYsSs9UOUYxE";
-$(window)
-		.load(
-				function() {
-					var token = $("#token").val();
+var token = "";
+var apikey = "";
+$(window).load(function() {
+					$.getJson("apikey", function(result){
+						apikey = result.apikey;
+						token = result.token;
+					});
 					if (typeof token !== "undefined") {
-						$.getJSON(
-										'https://www.googleapis.com/drive/v2/files?corpus=DEFAULT&projection=FULL&key='
-												+ apikey + '&access_token='
-												+ token,
-										function(data) {
+						$.getJSON('https://www.googleapis.com/drive/v2/files?corpus=DEFAULT&projection=FULL&key=' + apikey + '&access_token=' + token, function(data) {
 													console.log(data);
 											for (var x = 0; x < data['items'].length; x++) {
 												if (data['items'][x]['explicitlyTrashed'] !== true) {
